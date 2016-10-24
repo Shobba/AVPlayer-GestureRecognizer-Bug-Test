@@ -9,11 +9,10 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        if let navController = tabBarController.viewControllers?[1] as? UINavigationController, tabBarController.selectedIndex == 0 {
-            if navController.viewControllers.count == 2 {
-                if let playerController = navController.viewControllers[1] as? AVPlayerViewController {
-                    playerController.player?.pause()
-                }
+        if let navController = tabBarController.viewControllers?[1] as? UINavigationController,
+            tabBarController.selectedIndex == 0 && navController.viewControllers.count > 1 {
+            if let playerController = navController.viewControllers[1] as? AVPlayerViewController {
+                playerController.player?.pause()
             }
         }
     }
